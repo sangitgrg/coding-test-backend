@@ -4,5 +4,3 @@ This is the backend of project created in .Net core 3.1 with EntityFramework cor
 
 # Frontend
 Front end is created using Angular 12 and Typescript
-
-Test merge with Test branch
