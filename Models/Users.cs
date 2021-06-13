@@ -27,8 +27,6 @@ namespace CodingTest.Models
         public DateTime CreatedDate { get; set; }
         public ICollection<EmployeeAssignedReview> ReviewerEmployee { get; set; }
         public ICollection<EmployeeAssignedReview> EmployeeToBeReviewed { get; set; }
-        public ICollection<Review> ListOfReviewer { get; set; }
-        public ICollection<Review> ListOFReviewed { get; set; }
     }
 }
 

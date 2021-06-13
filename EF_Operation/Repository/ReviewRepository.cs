@@ -1,4 +1,5 @@
-﻿using CodingTest.Models;
+﻿using CodingTest.API_Result;
+using CodingTest.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,27 @@ namespace CodingTest.EF_Operation
     {
         public ReviewRepository(CodingTestDbContext _context) : base(_context)
         {
+        }
+
+        public Review CreateReview(Review_dto reviewDto)
+        {
+            Review review = new Review
+            {
+                Point = reviewDto.Point,
+                FeedBack = reviewDto.FeedBack,
+                ReviewedDate = DateTime.Today,
+                ReviewerId = reviewDto.ReviewerId,
+                GotReviewedId = reviewDto.GotReviewedId
+            };
+            _context.Add(review);
+            _context.SaveChanges();
+            return review;
+        }
+
+        public bool CheckEmployeeAssignedForReview(Guid reviewerId, Guid tobeReviewedId)
+        {
+            var x = _context.EmployeeAssignedReviews.Where(x => x.ToBeReviewedId == tobeReviewedId && x.ReviewerId == reviewerId).Any();
+            return x;
         }
 
         public IEnumerable<Review> GetAllReviewInformation()

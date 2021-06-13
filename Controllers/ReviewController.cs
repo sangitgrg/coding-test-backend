@@ -21,6 +21,18 @@ namespace CodingTest.Controllers
             _mapper = mapper;
         }
 
+        [HttpPost]
+        [Route("createReview")]
+        public IActionResult CreateReview([FromBody] Review_dto review_Dto)
+        {
+            if (!_reviewRepository.CheckEmployeeAssignedForReview(review_Dto.ReviewerId, review_Dto.GotReviewedId))
+            {
+                return Ok("You are not assigned to review this employee.");
+            }
+            var res = _reviewRepository.CreateReview(review_Dto);
+            return Ok(_mapper.Map<Review, Review_dto>(res));
+        }
+
         [HttpGet]
         [Route("getAllReviews")]
         //[Authorize("Admin,User")]

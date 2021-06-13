@@ -24,14 +24,8 @@ namespace CodingTest.EF_Operation
                 .WithMany(e => e.EmployeeToBeReviewed)
                 .HasForeignKey(ea => ea.ToBeReviewedId)
                 .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Users>()
-                .HasMany(re => re.ListOfReviewer)
-                .WithOne(r => r.Reviewer)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Users>()
-                .HasMany(re => re.ListOFReviewed)
-                .WithOne(r => r.GotReviewed);
         }
+            
 
         public DbSet<Users> Users { get; set; }
         public DbSet<Review> Reviews { get; set; }
