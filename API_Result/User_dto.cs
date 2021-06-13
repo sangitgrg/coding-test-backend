@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CodingTest.API_Result
 {
@@ -13,5 +14,7 @@ namespace CodingTest.API_Result
         public bool IsAdmin { get; set; }
         public DateTime CreatedDate { get; set; }
         public string FullName { get; set; }
+        public string Email { get; set; }
+        public List<UserAssigned_dto> EmployeeToBeReviewed { get; set; }
     }
 }

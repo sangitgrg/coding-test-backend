@@ -35,7 +35,7 @@ namespace CodingTest.EF_Operation
             obj.Id = Guid.NewGuid();
             table.Add(obj);
         }
-        public void Update(T obj)
+        public virtual void Update(T obj)
         {
             table.Attach(obj);
             _context.Entry(obj).State = EntityState.Modified;

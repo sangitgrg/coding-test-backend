@@ -27,15 +27,15 @@ namespace CodingTest.Controllers
         public IActionResult GetAllUsers()
         {
             var res = _userRepository.GetAllUsers();
-            return Ok(_mapper.Map<List<Users>, List<User_dto>>(res.ToList()));
+            return Ok(res);
         }
 
         [HttpGet]
-        [Route("{id}/getAllReviewsAssignedToMe")]
+        [Route("getEmployeeAssignedToMe/{id}")]
         //[Authorize("Admin,User")]
-        public IActionResult GetReviewsAssignedToMe(Guid id)
+        public IActionResult GetEmployeeAssignedToMe(Guid id)
         {
-            var res = _userRepository.GetReviewsAssignedToMe(id);
+            var res = _userRepository.GetEmployeeAssignedToMe(id);
             return Ok(_mapper.Map<List<EmployeeAssignedReview>, List<EmployeeAssigned_dto>>(res.ToList()));
         }
 
@@ -47,6 +47,15 @@ namespace CodingTest.Controllers
             var res = _userRepository.GetAllEmployeeForReview();
             var x = _mapper.Map<List<EmployeeAssignedReview>, List<EmployeeAssigned_dto>>(res.ToList());
             return Ok(x);
+        }
+
+        [HttpPut]
+        [Route("updateUser")]
+        //[Authorize("Admin")]
+        public IActionResult UpdateUser([FromBody] User_dto user)
+        {
+            var res = _userRepository.UpdateUser(user);
+            return Ok(_mapper.Map<Users, User_dto>(res));
         }
 
         [HttpPost]

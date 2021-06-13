@@ -53,6 +53,7 @@ namespace CodingTest.Controllers
             if (id != record.Id)
                 return BadRequest();
 
+            //var entityObj = _repository.GetById(id);
             _repository.Update(record);
             if (await _repository.SaveAsync() == 0)
                 return BadRequest();
